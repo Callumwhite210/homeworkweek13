@@ -20,6 +20,23 @@ let connection = mysql.createConnection({
 app.engine("handlebars", exphbs({defultLayout: "main"}));
 app.set("view engine", "handlebars");
 
+//loops through all burgers
+app.get("/", function(req,res){
+  let data = {
+    burgers: []
+  };
+  for (let i = 0; i < burgers.length; i += 1){
+    let currentBurger = burger[i];
+
+    //if current burger is devoured
+    if (currentBurger){
+      data.burgers.push(currentBurger);
+    }
+  }
+
+  res.render("index", data);
+});
+
 //Shows Database is connected
 connection.connect(function(err) {
     if (err) {
