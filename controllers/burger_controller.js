@@ -1,8 +1,10 @@
+//dependencies
 const express = require("express");
 const burger = require("../models/burger");
 
 const router = express.Router();
 
+//view all burgers
 router.get("/", function(req, res) {
     burger.selectAll(function(data) {
         let objectBurger = {
@@ -14,17 +16,32 @@ router.get("/", function(req, res) {
     });
 });
 
-router.post("/api/burgers", function(req, res){
-    burger.insertOne(req.body.name, function(result){
-        res.json({id: result.id});
-    });
+//creates new Burger
+router.post("/api/create/:newBurger", function(req, res){
+    let newBurger = req.params.newBurger;
+
+    burger.insertOne(newBurger, function(res){
+        if(result.affectRows !==1){
+            return res.status(404).end();
+        }
+        else{
+            res.status(200).end();
+        }
+    })
 });
 
-router.put("api/burgers/:id", function(req, res){
-    const burgerID = req.params.id;
-    burger.updateOne("devoured", req.body.devoured, burgerID, function(result){
+//updates burgers
+router.put("api/burgers/:burger_name", function(req, res){    
+  let updateBurger = req.params.burger_name;
+
+  burger.updateOne(updateBurger, function(res){
+      if(result.changeRows !==1){
+        return res.status(404).end();
+      }
+      else{
         res.status(200).end();
-    });
+    }
+  })
 });
 
-module.exports = router;
+module.exports = router; 

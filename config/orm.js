@@ -1,36 +1,32 @@
-const connection = require("./connection")
-
 let connection = require("./connection.js");
 
 //
-const orm = {
-    selectAll: function(cb){
-        const query = connection.query("SELECT * FROM burger", function(err, res){
-            if (err) 
-            {throw err};
+let orm = {
+    selectAll: function(tableName, cb){
+        let queryString = "SELECT * FROM ??";
+        connection.query(queryString, [tableName], function(err, res){
+            if(err) throw err;
             cb(res);
-        });
+        })
         console.log(query);
     },
     //inserts burger into table 
-    insertOne: function(burgerName, cb){
-        const query = connection.query("INSERT INTO burger (burger_name) VALUES (?)", burgerName, function(err, res){
-            if (err) 
-            {throw err};
-            cb(res);
+    insertOne: function(tableName, colName, burgerName, cb){
+        let queryString = "INSERT INTO ?? (??) VALUES (?)";
+        connection.query(queryString, [tableName, colName, burgerName], function(err, result) {
+            if(err) throw err;
+            cb(result); 
         });
-        console.log(query);
     },
     //updates table with new burger
-    updateOne: function(columnName, valueToUpdate, id, cb){
-        const query = connection.query("UPDATE burger SET ??=? WHERE id=?", [columnName, valueToUpdate, id], function(err, res){
-            if (err) 
-            {throw err};
-            cb(res);
-        });
-        console.log(query);
+    updateOne: function(tableName, colName, burgerName, cb) {
+        let queryString = "UPDATE ?? SET devoured = true WHERE ?? = ?";
+        connection.query(queryString, [tableName, colName, burgerName], function(err, result) {
+            if(err) throw err;
+            cb(result);
+        });       
     }
-}
+};
 
 
 module.exports = orm;
