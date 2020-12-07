@@ -7,12 +7,12 @@ let burgers = {
         });
     },
     insertOne: function(burgerName, cb){
-        orm.insertOne(burgerName, function(res){
+        orm.insertOne("burgers", "burger_name", burgerName, function(res){
             cb(res);
         });
     },
-    updateOne: function(columnName, value, id, cb){
-        orm.updateOne(columnName, value, id, function(res){
+    updateOne: function(burgerName, cb){
+        orm.updateOne("burgers", "burger_name", burgerName, function(res){
             cb(res);
         });
     }

@@ -4,14 +4,19 @@ const burger = require("../models/burger");
 
 const router = express.Router();
 
-router.get("/", function(req, res){
-
 //view all burgers
 router.get("/", function(req, res) {
-    burger.selectAll(function(burgerData) {
+    burger.selectAll(function(data){
+        let handlebarsObj = {
+            burgers: data
+        };
+        res.render("index", handlebarsObj);
+    })
+
+/*     burger.selectAll(function(burgerData) {
         res.render("index", { burger_data: burgerData });
         console.log(burgerData);
-    });
+    }); */
 });
 
 //creates new Burger
@@ -41,6 +46,6 @@ router.put("api/burgers/:burger_name", function(req, res){
         }
     })
     });
-})
+
 
 module.exports = router; 
