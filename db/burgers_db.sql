@@ -14,3 +14,6 @@ CREATE TABLE burgers (
 INSERT INTO burgers (burger_name)
 VALUES ("Cheese Burger"),
 ("BLT");
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'localpass'
+flush privileges;

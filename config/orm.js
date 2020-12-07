@@ -3,12 +3,11 @@ let connection = require("./connection.js");
 //
 let orm = {
     selectAll: function(tableName, cb){
-        let queryString = "SELECT * FROM ??";
-        connection.query(queryString, [tableName], function(err, res){
+        let queryString = "SELECT * FROM "+tableName+";";
+        connection.query(queryString, function(err, res){
             if(err) throw err;
             cb(res);
         })
-        console.log(query);
     },
     //inserts burger into table 
     insertOne: function(tableName, colName, burgerName, cb){

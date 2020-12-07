@@ -1,23 +1,26 @@
 //Dependencies
 const express = require("express");
-const exphbs = require("express-handlebars");
-const path = require("path");
+const PORT = process.env.PORT || 8000;
 const app = express();
 
-const PORT = process.env.PORT || 8080;
 
-app.use(express.static("/public",express.static(path.join(__dirname, "public"))));
-app.use(express.urlencoded({extended: true}));
-app.use(express.json);
+app.use(express.static("public"));
 
-app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+const exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 const routes = require("./controllers/burger_controller.js");
 
+//Server is running
 app.use(routes);
-
-//Shows server is running
-app.listen(PORT,() => {
-    console.log(`App listening on localhost:${PORT}`);
+app.listen(PORT, function() {
+  console.log("Listening on port:%s", PORT);
 });
+
+
+ 

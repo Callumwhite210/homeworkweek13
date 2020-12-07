@@ -1,8 +1,8 @@
 const orm = require("../config/orm");
 
-const burger = {
+let burgers = {
     selectAll: function(cb) {
-        orm.selectAll(function(res){
+        orm.selectAll("burgers", function(res){
             cb(res);
         });
     },
@@ -18,4 +18,4 @@ const burger = {
     }
 };
 
-module.exports = burger;
+module.exports = burgers;

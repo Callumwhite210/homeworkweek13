@@ -2,17 +2,15 @@
 const express = require("express");
 const burger = require("../models/burger");
 
+
 const router = express.Router();
 
 //view all burgers
 router.get("/", function(req, res) {
-    burger.selectAll(function(data) {
-        let objectBurger = {
-            burgers: data
-        };
-
-        console.log(objectBurger);
-        res.render("index", objectBurger);
+    burger.selectAll(function(burgerData) {
+        // wrapper for orm.js that using MySQL query callback will return burger_data, render to index with handlebar
+        res.render("index", { burger_data: burgerData });
+        console.log(burgerData);
     });
 });
 
