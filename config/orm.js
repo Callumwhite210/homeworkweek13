@@ -11,7 +11,7 @@ let orm = {
     },
     //inserts burger into table 
     insertOne: function(tableName, colName, burgerName, cb){
-        let queryString = "INSERT INTO ?? (??) VALUES (?)";
+        let queryString = "INSERT INTO "+tableName+"(??) VALUES (?)";
         connection.query(queryString, [tableName, colName, burgerName], function(err, result) {
             if(err) throw err;
             cb(result); 

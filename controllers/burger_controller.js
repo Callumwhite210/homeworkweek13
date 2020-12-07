@@ -2,13 +2,13 @@
 const express = require("express");
 const burger = require("../models/burger");
 
-
 const router = express.Router();
+
+router.get("/", function(req, res){
 
 //view all burgers
 router.get("/", function(req, res) {
     burger.selectAll(function(burgerData) {
-        // wrapper for orm.js that using MySQL query callback will return burger_data, render to index with handlebar
         res.render("index", { burger_data: burgerData });
         console.log(burgerData);
     });
@@ -38,8 +38,9 @@ router.put("api/burgers/:burger_name", function(req, res){
       }
       else{
         res.status(200).end();
-    }
-  })
-});
+        }
+    })
+    });
+})
 
 module.exports = router; 
