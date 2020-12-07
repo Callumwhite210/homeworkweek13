@@ -4,7 +4,7 @@
                 <h1>Eat-Da-Burger</h1>
             </div>
         </div>     
-   
+   <!--Start of main body-->
     <div class="form-group">
         <label for="exampleInputEmail1">Enter Burger</label>
         <input type="burger" class="form-control" id="newBurger" aria-describedby="burger">
@@ -25,7 +25,7 @@
             <h4 class="mid-heading">Burgers</h4>
             {{#each burgers}}
                 {{#unless devoured}}
-            <li class="mt-2"><span class="mr-1 burger-name">{{burger_name}}</span><button class="btn devour-btn"></button></li>
+            <li class="mt-2"><span class="mr-1 burger-name">{{burger_name}}</span><button class="btn btn-light devour-btn"></button></li>
                 {{/unless}}
             {{/each}}
         </ul>
