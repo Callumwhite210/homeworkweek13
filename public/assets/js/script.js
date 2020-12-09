@@ -25,7 +25,7 @@
                 location.reload();
             }
         );
-
+        console.log("creating burger");
         $("#burgerdesc").val("");
     })
 });
