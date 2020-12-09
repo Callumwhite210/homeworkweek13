@@ -1,4 +1,4 @@
-(document).ready(function(){
+$(document).ready(function(){
 
     $(".devour-btn").on("click", function(){
         let burger_name = $(this).siblings("span").text();
