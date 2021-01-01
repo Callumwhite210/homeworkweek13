@@ -1,38 +1,57 @@
-    <div class="container-fluid d-flex flex-column align-items-center justify-content-center m-0">
-        <div class="row text-center">
-            <div class="col">
-                <h1>Eat-Da-Burger</h1>
-            </div>
-        </div>     
-   <!--Start of main body-->
-    <div class="form-group">
-        <label for="exampleInputEmail1">Enter Burger</label>
-        <input type="burger" class="form-control" id="newBurger" aria-describedby="burger">
-        <div class="col">
-            <input type="button" class="btn btn-light" type="submit" value="Order up!" id="create-burger"></input>
+    <div class="container-fluid d-flex flex-column align-items-center justify-content-center m-0" id="wrapper">
+    <!-- Header -->
+    <div class="row text-center">
+        <div class="col w-100">
+            <h1 id="heading">"Eat-Da-Burger"</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col w-100 text-center">
+            <img src="/public/assests/img/burger_logo.png" id="head-img" class="rounded" alt="burger-img.png">
         </div>
     </div>
 
+    <!-- Form -->
+    <form class="mt-5">
+        <div class="form-group row text-center mb-0">
+            <div class="col">
+                <label for="burgerdesc">Create your Burger & Click Submit</label>
+            </div>
+        </div>
+        <div class="form-group row text center mt-1">
+            <div class="col">
+                <textarea class="form-control" id="burgerdesc"></textarea>
+            </div>
+        </div>
+        <div class="form-group row text-center mt-3">
+            <div class="col">
+                <input type="button" class="btn btn-info" type="submit" value="Submit" id="create-burger"></input>
+            </div>
+        </div>
+    </form>    
+
     <div class="row mb-5 mt-0">
         <div class="col">
-            <h4> Your Burger List!</h4>
+            <h4> Click on the plate to devour burgers</h4>
         </div>
     </div>
 
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-auto">
             <ul class="list text-center" id="created-list">
-            <h4 class="mid-heading">Burgers</h4>
+            <li><img src="/public/assests/img/burger_create.png" class="mid-img rounded" alt="burger-create.png"></li>
+            <li class="mid-heading">Burgers</li>
             {{#each burgers}}
                 {{#unless devoured}}
-            <li class="mt-2"><span class="mr-1 burger-name">{{burger_name}}</span><button class="btn btn-light devour-btn">Devour</button></li>
+            <li class="mt-2"><span class="mr-1 burger-name">{{burger_name}}</span><button class="btn devour-btn"><img src="/public/assests/img/food.png" role="button" alt="devour.png" class="devour-icon" data-toggle="tooltip" data-placement="bottom" title="Devour it!!"></button></li>
                 {{/unless}}
             {{/each}}
         </ul>
         </div>
         <div class="col-auto">
             <ul class="list text-center" id="devoured-list">
-                <h4 class="mid-heading">Devoured</h4>
+                <li><img src="/public/assests/img/burger_devour.png" class="mid-img rounded" alt="burger-devour.png"></li>
+                <li class="mid-heading">Devoured</li>
                 {{#each burgers}}
                     {{#if devoured}}
                 <li class="mt-2">{{burger_name}}</li>
